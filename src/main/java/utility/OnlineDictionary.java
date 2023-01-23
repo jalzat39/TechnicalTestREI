@@ -5,17 +5,12 @@ import java.util.*;
 
 public class OnlineDictionary {
 
-    public static List<String> dictionaryList = new ArrayList<>();
+    /**
+     * Dictionary used in the problem
+     */
+    private static String[] words = {"mobile", "samsung", "sam", "sung",
+            "man", "mango", "icecream", "and", "know", "working", "cartoon",
+            "go", "like", "ice", "cream", "work", "king", "row", "ring", "korn"};
 
-    public static List<String> createDictionaryArray() throws FileNotFoundException {
-
-        Scanner scanner = new Scanner(new FileReader(
-                "src/main/java/resources/EnglishWords.txt"));
-        String words;
-        while(scanner.hasNext()){
-            words = scanner.next();
-            dictionaryList.add(words);
-        }
-        return dictionaryList;
-    }
+    public static Set<String> wordsSet = new HashSet<String>(Arrays.asList(words));
 }

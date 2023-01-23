@@ -3,20 +3,14 @@ package test;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import utility.OnlineDictionary;
 import utility.Search;
-
-import java.io.FileNotFoundException;
 
 public class Tests {
 
     private Search search;
 
     @Before
-    public void upSet() throws FileNotFoundException {
-        OnlineDictionary onlineDictionary = new OnlineDictionary();
-        OnlineDictionary.createDictionaryArray();
-
+    public void upSet() {
         search = new Search();
     }
 
@@ -40,7 +34,7 @@ public class Tests {
      */
     @Test
     public void testShowWordsWorking() {
-        Assert.assertTrue(search.covertWord("cartoon").contains("cartoon"));
+        Assert.assertTrue(search.covertWord("working").contains("row"));
     }
 
     /**
@@ -73,7 +67,7 @@ public class Tests {
     /**
      * Seven test, check that, given a very long English word, the system can respond quickly
      */
-    @Test
+    @Test(timeout = 5000)
     public void testLargeWords() {
         Assert.assertTrue(search.covertWord("workingRingWorkingRingWorkingRing").contains("ring"));
     }
@@ -92,9 +86,9 @@ public class Tests {
      */
     @Test
     public void testEmptyWords() {
-        try{
+        try {
             Assert.assertFalse(search.covertWord("").isEmpty());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             Assert.assertEquals("java.lang.RuntimeException: The word only have alphabet character", e.toString());
         }
@@ -105,9 +99,9 @@ public class Tests {
      */
     @Test
     public void testBlankSpace() {
-        try{
+        try {
             Assert.assertFalse(search.covertWord("Working Ring").isEmpty());
-        } catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
             Assert.assertEquals("java.lang.RuntimeException: The word only have alphabet character", e.toString());
         }
